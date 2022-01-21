@@ -21,7 +21,7 @@ public class Main : Control
 
 		AddToGroup("ActionNotify");
 		GetTree().SetAutoAcceptQuit(false);
-		GetNode<ConfirmationDialog>("ExitSaveConfirmation").AddButton("Save & Continue", false, "SaveContinue");
+		GetNode<ConfirmationDialog>("ExitSaveConfirmation").AddButton("Save First", false, "SaveContinue");
 
 		//Connect to popup windows
 		GetNode<ConfirmationDialog>("ExitSaveConfirmation").Connect("custom_action", this, nameof(SaveExitWindowUpdateSave));
