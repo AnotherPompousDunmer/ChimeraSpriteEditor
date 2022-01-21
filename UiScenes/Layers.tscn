@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Windows/Layers.cs" type="Script" id=1]
-[ext_resource path="res://LayersItem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://LayerBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UiScenes/LayersItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UiScenes/LayerBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=4]
 
 [node name="VBox" type="VBoxContainer"]

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Main : Control
 {
-	static PackedScene NormalScene = GD.Load<PackedScene>("res://NormalTex.tscn");
+	//static PackedScene NormalScene = GD.Load<PackedScene>("res://NormalTex.tscn");
 	static PackedScene FullEditor = GD.Load<PackedScene>("res://FullEditor.tscn");
 
 	public Vector2 Size;

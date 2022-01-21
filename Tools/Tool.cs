@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Tool : Godot.Object, IUndoable
 {
-    protected static PackedScene Button = GD.Load<PackedScene>("res://ToolButton.tscn");
+    protected static PackedScene Button = GD.Load<PackedScene>("res://UiScenes/ToolButton.tscn");
 
     protected Main Main;
     protected ToolsPopUp parent;
