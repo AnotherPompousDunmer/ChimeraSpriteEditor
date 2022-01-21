@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Windows/Layers.cs" type="Script" id=1]
+[ext_resource path="res://LayersItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LayerBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=4]
+
+[node name="VBox" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+LayersListItem = ExtResource( 2 )
+LayerBase = ExtResource( 3 )
+
+[node name="List" type="ScrollContainer" parent="."]
+margin_right = 1900.0
+margin_bottom = 874.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="List"]
+margin_right = 1900.0
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 878.0
+margin_right = 1900.0
+margin_bottom = 900.0
+theme = ExtResource( 4 )
+
+[node name="NewTexture" type="Button" parent="HBoxContainer"]
+margin_right = 1900.0
+margin_bottom = 22.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+text = "+ New Layer"
+
+[connection signal="pressed" from="HBoxContainer/NewTexture" to="." method="AddLayer"]

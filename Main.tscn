@@ -1,0 +1,839 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Main.cs" type="Script" id=1]
+[ext_resource path="res://LoadDialogFixed.gd" type="Script" id=2]
+[ext_resource path="res://CanvasSizeDirButtonGroup.tres" type="ButtonGroup" id=3]
+[ext_resource path="res://SmallScripts/ExportBrowseButton.gd" type="Script" id=4]
+[ext_resource path="res://SmallScripts/ExportBrowseField.gd" type="Script" id=5]
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=6]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 6 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadDialog" type="FileDialog" parent="."]
+anchor_left = 0.2
+anchor_top = 0.3
+anchor_right = 0.6
+anchor_bottom = 0.9
+margin_left = 152.0
+margin_top = 162.0
+margin_right = 152.0
+margin_bottom = 162.0
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.cse" )
+current_dir = "/Godot Projects/SpriteEditor"
+current_path = "/Godot Projects/SpriteEditor/"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImportDialog" type="FileDialog" parent="."]
+anchor_left = 0.2
+anchor_top = 0.3
+anchor_right = 0.6
+anchor_bottom = 0.9
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.dds", "*.exr", "*.hdr", "*.tga", "*.svg", "*.svgz", "*.webp" )
+current_dir = "/Godot Projects/SpriteEditor"
+current_path = "/Godot Projects/SpriteEditor/"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+anchor_left = 0.2
+anchor_top = 0.3
+anchor_right = 0.6
+anchor_bottom = 0.9
+theme = ExtResource( 6 )
+access = 2
+filters = PoolStringArray( "*.cse" )
+current_dir = "/Godot Projects/SpriteEditor"
+current_path = "/Godot Projects/SpriteEditor/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewProj" type="ConfirmationDialog" parent="."]
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.5
+theme = ExtResource( 6 )
+window_title = "New Project..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="NewProj"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -54.0
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="HBoxContainer" parent="NewProj/VBox"]
+margin_right = 364.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+alignment = 1
+
+[node name="Label" type="Label" parent="NewProj/VBox/Input"]
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+text = "X:"
+align = 1
+
+[node name="X" type="SpinBox" parent="NewProj/VBox/Input"]
+margin_left = 92.0
+margin_top = 11.0
+margin_right = 180.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource( 6 )
+align = 1
+
+[node name="Label2" type="Label" parent="NewProj/VBox/Input"]
+margin_left = 184.0
+margin_top = 16.0
+margin_right = 272.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+text = " x Y:"
+align = 1
+
+[node name="Y" type="SpinBox" parent="NewProj/VBox/Input"]
+margin_left = 276.0
+margin_top = 11.0
+margin_right = 364.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource( 6 )
+align = 1
+
+[node name="CanvasSize" type="ConfirmationDialog" parent="."]
+anchor_left = 0.4
+anchor_top = 0.45
+anchor_right = 0.4
+anchor_bottom = 0.45
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="CanvasSize"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -54.0
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="CanvasSize/HBox"]
+margin_right = 90.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="X" type="HBoxContainer" parent="CanvasSize/HBox/VBox"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="CanvasSize/HBox/VBox/X"]
+margin_top = 5.0
+margin_right = 8.0
+margin_bottom = 19.0
+theme = ExtResource( 6 )
+text = "X"
+
+[node name="SpinBox" type="SpinBox" parent="CanvasSize/HBox/VBox/X"]
+margin_left = 12.0
+margin_right = 86.0
+margin_bottom = 24.0
+theme = ExtResource( 6 )
+min_value = 1.0
+max_value = 1024.0
+value = 1.0
+rounded = true
+
+[node name="Y" type="HBoxContainer" parent="CanvasSize/HBox/VBox"]
+margin_top = 44.0
+margin_right = 90.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="CanvasSize/HBox/VBox/Y"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 19.0
+theme = ExtResource( 6 )
+text = "Y"
+
+[node name="SpinBox" type="SpinBox" parent="CanvasSize/HBox/VBox/Y"]
+margin_left = 11.0
+margin_right = 85.0
+margin_bottom = 24.0
+theme = ExtResource( 6 )
+min_value = 1.0
+max_value = 1024.0
+value = 1.0
+rounded = true
+
+[node name="Grid" type="GridContainer" parent="CanvasSize/HBox"]
+margin_left = 105.0
+margin_right = 173.0
+margin_bottom = 74.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+columns = 3
+
+[node name="TL" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_right = 20.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "↖"
+
+[node name="T" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "↑"
+
+[node name="TR" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "↗"
+
+[node name="L" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_top = 26.0
+margin_right = 20.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "←"
+
+[node name="C" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_left = 24.0
+margin_top = 26.0
+margin_right = 44.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+pressed = true
+group = ExtResource( 3 )
+text = "•"
+
+[node name="R" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_left = 48.0
+margin_top = 26.0
+margin_right = 68.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "→"
+
+[node name="BL" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_top = 52.0
+margin_right = 20.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "↙"
+
+[node name="B" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_left = 24.0
+margin_top = 52.0
+margin_right = 44.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "↓"
+
+[node name="BR" type="Button" parent="CanvasSize/HBox/Grid"]
+margin_left = 48.0
+margin_top = 52.0
+margin_right = 68.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "↘"
+
+[node name="Grid" type="ConfirmationDialog" parent="."]
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.45
+anchor_bottom = 0.45
+theme = ExtResource( 6 )
+window_title = "Grid"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Grid"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -54.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Active" type="CheckBox" parent="Grid/VBox"]
+margin_left = 92.0
+margin_right = 176.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.3
+theme = ExtResource( 6 )
+text = "Use Grid"
+
+[node name="HBox" type="HBoxContainer" parent="Grid/VBox"]
+margin_left = 49.0
+margin_top = 28.0
+margin_right = 220.0
+margin_bottom = 52.0
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme = ExtResource( 6 )
+
+[node name="X" type="SpinBox" parent="Grid/VBox/HBox"]
+margin_right = 74.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+prefix = "x:"
+
+[node name="Label" type="Label" parent="Grid/VBox/HBox"]
+margin_left = 78.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 19.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+text = " x "
+
+[node name="Y" type="SpinBox" parent="Grid/VBox/HBox"]
+margin_left = 97.0
+margin_right = 171.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+prefix = "y:"
+
+[node name="Export" type="ConfirmationDialog" parent="."]
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.5
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Export"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -54.0
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="GridContainer" parent="Export/VBox"]
+margin_right = 359.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+columns = 2
+
+[node name="Label" type="Label" parent="Export/VBox/Settings"]
+margin_top = 4.0
+margin_right = 200.0
+margin_bottom = 20.0
+theme = ExtResource( 6 )
+text = "Split by:"
+
+[node name="Split" type="OptionButton" parent="Export/VBox/Settings"]
+margin_left = 204.0
+margin_right = 359.0
+margin_bottom = 24.0
+theme = ExtResource( 6 )
+text = "Don't Split"
+items = [ "Don't Split", null, false, 0, null, "Anim", null, false, 1, null, "Frame", null, false, 2, null ]
+selected = 0
+
+[node name="Label2" type="Label" parent="Export/VBox/Settings"]
+margin_top = 32.0
+margin_right = 200.0
+margin_bottom = 48.0
+theme = ExtResource( 6 )
+text = "Normals:"
+
+[node name="Normals" type="OptionButton" parent="Export/VBox/Settings"]
+margin_left = 204.0
+margin_top = 28.0
+margin_right = 359.0
+margin_bottom = 52.0
+theme = ExtResource( 6 )
+text = "In Separate Files"
+items = [ "In Separate Files", null, false, 0, null, "With Frames", null, false, 1, null ]
+selected = 0
+
+[node name="Label3" type="Label" parent="Export/VBox/Settings"]
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 76.0
+theme = ExtResource( 6 )
+text = "Export Layers:"
+
+[node name="ExportLayers" type="OptionButton" parent="Export/VBox/Settings"]
+margin_left = 204.0
+margin_top = 56.0
+margin_right = 359.0
+margin_bottom = 80.0
+theme = ExtResource( 6 )
+text = "As Separate Files"
+items = [ "As Separate Files", null, false, 0, null, "With Frames", null, false, 1, null ]
+selected = 0
+
+[node name="Label4" type="Label" parent="Export/VBox/Settings"]
+margin_top = 88.0
+margin_right = 200.0
+margin_bottom = 104.0
+theme = ExtResource( 6 )
+text = "Optimize Spritesheet for:"
+
+[node name="Optimization" type="OptionButton" parent="Export/VBox/Settings"]
+margin_left = 204.0
+margin_top = 84.0
+margin_right = 359.0
+margin_bottom = 108.0
+theme = ExtResource( 6 )
+text = "Readability"
+items = [ "Size", null, false, 0, null, "Readability", null, false, 1, null ]
+selected = 1
+
+[node name="Path" type="HBoxContainer" parent="Export/VBox"]
+margin_top = 112.0
+margin_right = 359.0
+margin_bottom = 138.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Export/VBox/Path"]
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+text = "File Path:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Export/VBox/Path"]
+margin_left = 84.0
+margin_right = 275.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="Button" type="Button" parent="Export/VBox/Path"]
+margin_left = 279.0
+margin_top = 1.0
+margin_right = 359.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+text = "Browse..."
+script = ExtResource( 4 )
+
+[node name="FileDialog" type="FileDialog" parent="Export/VBox/Path/Button"]
+margin_right = 500.0
+margin_bottom = 400.0
+theme = ExtResource( 6 )
+access = 2
+filters = PoolStringArray( "*.png" )
+current_dir = "/Godot Projects/SpriteEditor"
+current_path = "/Godot Projects/SpriteEditor/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GenNormals" type="ConfirmationDialog" parent="."]
+anchor_left = 0.4
+anchor_top = 0.35
+anchor_right = 0.6
+anchor_bottom = 0.7
+theme = ExtResource( 6 )
+window_title = "Generate Normal..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sliders" type="VBoxContainer" parent="GenNormals"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 365.0
+margin_bottom = 261.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="X" type="VBoxContainer" parent="GenNormals/Sliders"]
+margin_right = 364.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="Pos" type="HBoxContainer" parent="GenNormals/Sliders/X"]
+margin_right = 364.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GenNormals/Sliders/X/Pos"]
+margin_right = 72.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+text = "X"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider" type="HSlider" parent="GenNormals/Sliders/X/Pos"]
+margin_left = 76.0
+margin_right = 364.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="Settings" type="HBoxContainer" parent="GenNormals/Sliders/X"]
+margin_top = 29.0
+margin_right = 364.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+
+[node name="Spacer" type="Control" parent="GenNormals/Sliders/X/Settings"]
+margin_right = 72.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="VBox" type="VBoxContainer" parent="GenNormals/Sliders/X/Settings"]
+margin_left = 76.0
+margin_right = 364.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+
+[node name="Division" type="HBoxContainer" parent="GenNormals/Sliders/X/Settings/VBox"]
+margin_right = 288.0
+margin_bottom = 24.0
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GenNormals/Sliders/X/Settings/VBox/Division"]
+margin_right = 63.0
+margin_bottom = 24.0
+size_flags_vertical = 1
+theme = ExtResource( 6 )
+text = "Divisions:"
+valign = 1
+
+[node name="SpinBox" type="SpinBox" parent="GenNormals/Sliders/X/Settings/VBox/Division"]
+margin_left = 67.0
+margin_right = 288.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 6 )
+min_value = 1.0
+max_value = 360.0
+value = 1.0
+rounded = true
+
+[node name="Slope" type="HBoxContainer" parent="GenNormals/Sliders/X/Settings/VBox"]
+margin_top = 28.0
+margin_right = 288.0
+margin_bottom = 44.0
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GenNormals/Sliders/X/Settings/VBox/Slope"]
+margin_top = 1.0
+margin_right = 74.0
+margin_bottom = 15.0
+theme = ExtResource( 6 )
+text = "Final Angle:"
+
+[node name="HSlider" type="HSlider" parent="GenNormals/Sliders/X/Settings/VBox/Slope"]
+margin_left = 78.0
+margin_right = 288.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+max_value = 90.0
+value = 90.0
+rounded = true
+
+[node name="ConCave" type="CheckBox" parent="GenNormals/Sliders/X/Settings/VBox"]
+margin_top = 48.0
+margin_right = 288.0
+margin_bottom = 72.0
+theme = ExtResource( 6 )
+text = "Concave"
+
+[node name="Y" type="VBoxContainer" parent="GenNormals/Sliders"]
+margin_top = 137.0
+margin_right = 364.0
+margin_bottom = 271.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="Pos" type="HBoxContainer" parent="GenNormals/Sliders/Y"]
+margin_right = 364.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GenNormals/Sliders/Y/Pos"]
+margin_right = 72.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+text = "Y"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider" type="HSlider" parent="GenNormals/Sliders/Y/Pos"]
+margin_left = 76.0
+margin_right = 364.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="Settings" type="HBoxContainer" parent="GenNormals/Sliders/Y"]
+margin_top = 30.0
+margin_right = 364.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+
+[node name="Spacer" type="Control" parent="GenNormals/Sliders/Y/Settings"]
+margin_right = 72.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 6 )
+
+[node name="VBox" type="VBoxContainer" parent="GenNormals/Sliders/Y/Settings"]
+margin_left = 76.0
+margin_right = 364.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 6 )
+
+[node name="Division" type="HBoxContainer" parent="GenNormals/Sliders/Y/Settings/VBox"]
+margin_right = 288.0
+margin_bottom = 24.0
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GenNormals/Sliders/Y/Settings/VBox/Division"]
+margin_right = 63.0
+margin_bottom = 24.0
+size_flags_vertical = 1
+theme = ExtResource( 6 )
+text = "Divisions:"
+valign = 1
+
+[node name="SpinBox" type="SpinBox" parent="GenNormals/Sliders/Y/Settings/VBox/Division"]
+margin_left = 67.0
+margin_right = 288.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 6 )
+min_value = 1.0
+max_value = 360.0
+value = 1.0
+rounded = true
+
+[node name="Slope" type="HBoxContainer" parent="GenNormals/Sliders/Y/Settings/VBox"]
+margin_top = 28.0
+margin_right = 288.0
+margin_bottom = 44.0
+theme = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GenNormals/Sliders/Y/Settings/VBox/Slope"]
+margin_top = 1.0
+margin_right = 74.0
+margin_bottom = 15.0
+theme = ExtResource( 6 )
+text = "Final Angle:"
+
+[node name="HSlider" type="HSlider" parent="GenNormals/Sliders/Y/Settings/VBox/Slope"]
+margin_left = 78.0
+margin_right = 288.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 6 )
+max_value = 90.0
+value = 90.0
+
+[node name="ConCave" type="CheckBox" parent="GenNormals/Sliders/Y/Settings/VBox"]
+margin_top = 48.0
+margin_right = 288.0
+margin_bottom = 72.0
+theme = ExtResource( 6 )
+text = "Concave"
+
+[node name="ExportError" type="AcceptDialog" parent="."]
+anchor_left = 0.35
+anchor_top = 0.35
+anchor_right = 0.45
+anchor_bottom = 0.45
+theme = ExtResource( 6 )
+dialog_text = "Couldn't parse the path!
+Maybe try again?"
+
+[node name="ExitSaveConfirmation" type="ConfirmationDialog" parent="."]
+anchor_left = 0.45
+anchor_top = 0.45
+anchor_right = 0.55
+anchor_bottom = 0.55
+theme = ExtResource( 6 )
+dialog_text = "You have unsaved changes - continue anyway?"
+dialog_autowrap = true
+
+[connection signal="about_to_show" from="LoadDialog" to="LoadDialog" method="fix_focus"]
+[connection signal="about_to_show" from="ImportDialog" to="ImportDialog" method="fix_focus"]
+[connection signal="file_selected" from="Export/VBox/Path/Button/FileDialog" to="Export/VBox/Path/LineEdit" method="onFileChosen"]

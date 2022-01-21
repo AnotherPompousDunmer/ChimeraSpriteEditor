@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Checker.png" type="Texture" id=1]
+[ext_resource path="res://PaletteRecieve.cs" type="Script" id=2]
+[ext_resource path="res://Textures/Palette2.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Palette1.png" type="Texture" id=4]
+
+[node name="ColorRect" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Primary = ExtResource( 4 )
+Secondary = ExtResource( 3 )
+
+[node name="UnderLay" type="TextureRect" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+
+[sub_resource type="ImageTexture" id=1]
+flags = 3
+flags = 3
+size = Vector2( 1, 1 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 4 )
+width = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 75, 75 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+alignment_horizontal = 0
+alignment_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 900.0
+margin_bottom = 900.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+texture_normal = SubResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteDialog" type="ConfirmationDialog" parent="TextureButton"]
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.4
+anchor_bottom = 0.5
+dialog_text = "Are you sure you want to delete this frame?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnderLay" type="TextureRect" parent="TextureButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+texture = SubResource( 3 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Options" type="MenuButton" parent="TextureButton"]
+anchor_left = 0.75
+anchor_top = 0.7
+anchor_right = 0.95
+anchor_bottom = 0.9
+theme = ExtResource( 1 )
+text = "⚙"
+flat = false
+items = [ "Duplicate", null, 0, false, false, 0, 0, null, "", false, "Delete", null, 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}

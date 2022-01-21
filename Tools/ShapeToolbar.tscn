@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_top = 443.0
+margin_right = 85.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "Select Tool | "
+
+[node name="Pos" type="Label" parent="."]
+margin_left = 89.0
+margin_top = 443.0
+margin_right = 121.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "(0, 0)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShapeInf" type="Label" parent="."]
+margin_left = 125.0
+margin_top = 443.0
+margin_right = 354.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "| From (0, 0) to (0, 0) | Size: (0, 0) | "
+
+[node name="ShapeLabel" type="Label" parent="."]
+margin_left = 358.0
+margin_top = 443.0
+margin_right = 396.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "Shape"
+
+[node name="Shape" type="OptionButton" parent="."]
+margin_left = 400.0
+margin_right = 481.0
+margin_bottom = 900.0
+theme = ExtResource( 1 )
+text = "Rectangle"
+items = [ "Rectangle", null, false, 0, null, "Oval", null, false, 1, null ]
+selected = 0
+
+[node name="ThicknessLabel" type="Label" parent="."]
+margin_left = 485.0
+margin_top = 443.0
+margin_right = 559.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "| Thickness"
+
+[node name="Thickness" type="SpinBox" parent="."]
+margin_left = 563.0
+margin_right = 630.0
+margin_bottom = 900.0
+theme = ExtResource( 1 )
+min_value = 1.0
+max_value = 24.0
+value = 1.0
+rounded = true

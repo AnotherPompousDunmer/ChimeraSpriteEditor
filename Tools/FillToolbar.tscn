@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_top = 443.0
+margin_right = 34.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "Fill | "
+
+[node name="Pos" type="Label" parent="."]
+margin_left = 38.0
+margin_top = 443.0
+margin_right = 70.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "(0, 0)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SensLabel" type="Label" parent="."]
+margin_left = 74.0
+margin_top = 443.0
+margin_right = 151.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "| Sensitivity"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sensitivity" type="SpinBox" parent="."]
+margin_left = 155.0
+margin_right = 222.0
+margin_bottom = 900.0
+theme = ExtResource( 1 )
+max_value = 2.0
+step = 0.01
+value = 0.01

@@ -1,0 +1,189 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 1
+
+[node name="AnimsItem" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SetActive" type="Button" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1896.0
+margin_bottom = 896.0
+theme = ExtResource( 1 )
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1896.0
+margin_bottom = 896.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBox"]
+margin_right = 628.0
+margin_bottom = 892.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="UnderLay" type="TextureRect" parent="HBox/TextureRect"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+texture = SubResource( 3 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Name" type="Label" parent="HBox"]
+margin_left = 632.0
+margin_right = 1260.0
+margin_bottom = 892.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "New Anim"
+align = 1
+valign = 1
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+margin_left = 1264.0
+margin_right = 1892.0
+margin_bottom = 892.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+
+[node name="Settings" type="Button" parent="HBox/VBox"]
+margin_right = 628.0
+margin_bottom = 294.0
+hint_tooltip = "Settings"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "⚙"
+
+[node name="Preview" type="Button" parent="HBox/VBox"]
+margin_top = 298.0
+margin_right = 628.0
+margin_bottom = 593.0
+hint_tooltip = "Preview"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "Prvw."
+
+[node name="PreviewWindow" type="WindowDialog" parent="HBox/VBox/Preview"]
+anchor_left = 0.6
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.7
+margin_right = 60.0
+margin_bottom = 40.0
+window_title = "Preview"
+resizable = true
+
+[node name="Texture" type="TextureRect" parent="HBox/VBox/Preview/PreviewWindow"]
+anchor_left = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+theme = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="Button" parent="HBox/VBox"]
+margin_top = 597.0
+margin_right = 628.0
+margin_bottom = 892.0
+hint_tooltip = "Delete"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "X"
+
+[node name="DeleteWarning" type="ConfirmationDialog" parent="."]
+anchor_left = 0.6
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 0.5
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 207.0
+margin_bottom = 82.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 1 )
+dialog_text = "Are you sure you want to delete this animation?"
+dialog_autowrap = true
+
+[node name="Properties" type="AcceptDialog" parent="."]
+margin_left = 874.0
+margin_top = 416.0
+margin_right = 1026.0
+margin_bottom = 484.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+window_title = "Anim Properties"
+
+[node name="Grid" type="GridContainer" parent="Properties"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 165.0
+margin_bottom = 41.0
+theme = ExtResource( 1 )
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Properties/Grid"]
+margin_left = 16.0
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 19.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+text = "FPS:"
+
+[node name="FPS" type="SpinBox" parent="Properties/Grid"]
+margin_left = 62.0
+margin_right = 136.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+min_value = 1.0
+max_value = 60.0
+value = 10.0

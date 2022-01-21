@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+[ext_resource path="res://ToolButtonGroup.tres" type="ButtonGroup" id=2]
+[ext_resource path="res://Icons.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[node name="Button" type="Button"]
+margin_right = 12.0
+margin_bottom = 20.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
+toggle_mode = true
+action_mode = 0
+group = ExtResource( 2 )
+text = "A"
+__meta__ = {
+"_edit_use_anchors_": false
+}

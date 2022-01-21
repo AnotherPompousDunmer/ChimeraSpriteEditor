@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://SmallScripts/SelectionBox.cs" type="Script" id=1]
+[ext_resource path="res://Textures/LineTex.png" type="Texture" id=2]
+[ext_resource path="res://Textures/GrowArrow.png" type="Texture" id=3]
+[ext_resource path="res://Textures/RotateArrow.png" type="Texture" id=4]
+
+[node name="SelectionWhole" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window" type="Control" parent="."]
+anchor_right = 0.1
+anchor_bottom = 0.1
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TL" type="TextureButton" parent="Window"]
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 6.0
+margin_bottom = 6.0
+button_mask = 3
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TR" type="TextureButton" parent="Window"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_top = -18.0
+margin_bottom = 6.0
+button_mask = 3
+texture_normal = ExtResource( 3 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BR" type="TextureButton" parent="Window"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+button_mask = 3
+texture_normal = ExtResource( 3 )
+flip_h = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BL" type="TextureButton" parent="Window"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -18.0
+margin_top = -6.0
+button_mask = 3
+texture_normal = ExtResource( 3 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rotate" type="TextureButton" parent="Window"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -12.0
+margin_top = -24.0
+button_mask = 3
+texture_normal = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 100, 0, 100, 100, 0, 100, 0, 0 )
+width = 1.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1

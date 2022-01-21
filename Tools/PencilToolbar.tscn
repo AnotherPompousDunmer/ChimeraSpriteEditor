@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_top = 443.0
+margin_right = 54.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "Pencil | "
+
+[node name="Pos" type="Label" parent="."]
+margin_left = 58.0
+margin_top = 443.0
+margin_right = 90.0
+margin_bottom = 457.0
+theme = ExtResource( 1 )
+text = "(0, 0)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RawInput" type="CheckButton" parent="."]
+margin_left = 94.0
+margin_right = 223.0
+margin_bottom = 900.0
+theme = ExtResource( 1 )
+text = "| Raw Input"

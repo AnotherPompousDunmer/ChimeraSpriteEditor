@@ -1,0 +1,253 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Lights/DirLight.cs" type="Script" id=1]
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=2]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("DirBox/Viewport")
+
+[node name="1" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DirBox" type="HBoxContainer" parent="."]
+margin_right = 1892.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="DirBox"]
+size = Vector2( 32, 32 )
+
+[node name="Line" type="Line2D" parent="DirBox/Viewport"]
+points = PoolVector2Array( 16, 16, 16, 0 )
+width = 2.0
+
+[node name="Preview" type="TextureRect" parent="DirBox"]
+margin_right = 629.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 6
+flip_v = true
+
+[node name="Dir" type="VBoxContainer" parent="DirBox"]
+margin_left = 633.0
+margin_right = 1892.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource( 2 )
+
+[node name="X" type="HBoxContainer" parent="DirBox/Dir"]
+margin_right = 1259.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="DirBox/Dir/X"]
+margin_right = 313.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "X"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="DirBox/Dir/X"]
+margin_left = 317.0
+margin_right = 1259.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 2 )
+min_value = -1.0
+max_value = 1.0
+step = 0.05
+
+[node name="Y" type="HBoxContainer" parent="DirBox/Dir"]
+margin_top = 144.0
+margin_right = 1259.0
+margin_bottom = 285.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="DirBox/Dir/Y"]
+margin_right = 313.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Y"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="DirBox/Dir/Y"]
+margin_left = 317.0
+margin_right = 1259.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 2 )
+min_value = -1.0
+max_value = 1.0
+step = 0.05
+value = -1.0
+
+[node name="Z" type="HBoxContainer" parent="DirBox/Dir"]
+margin_top = 289.0
+margin_right = 1259.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="DirBox/Dir/Z"]
+margin_right = 313.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "Z"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="DirBox/Dir/Z"]
+margin_left = 317.0
+margin_right = 1259.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 2 )
+max_value = 1.0
+step = 0.05
+
+[node name="HBox" type="HBoxContainer" parent="."]
+margin_top = 434.0
+margin_right = 1892.0
+margin_bottom = 864.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="HBox"]
+margin_right = 629.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+margin_left = 633.0
+margin_right = 1892.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource( 2 )
+
+[node name="R" type="HBoxContainer" parent="HBox/VBox"]
+margin_right = 1259.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="HBox/VBox/R"]
+margin_right = 313.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "R"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="HBox/VBox/R"]
+margin_left = 317.0
+margin_right = 1259.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 2 )
+max_value = 255.0
+
+[node name="G" type="HBoxContainer" parent="HBox/VBox"]
+margin_top = 144.0
+margin_right = 1259.0
+margin_bottom = 285.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="HBox/VBox/G"]
+margin_right = 313.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "G"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="HBox/VBox/G"]
+margin_left = 317.0
+margin_right = 1259.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 2 )
+max_value = 255.0
+
+[node name="B" type="HBoxContainer" parent="HBox/VBox"]
+margin_top = 289.0
+margin_right = 1259.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="HBox/VBox/B"]
+margin_right = 313.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+text = "B"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="HBox/VBox/B"]
+margin_left = 317.0
+margin_right = 1259.0
+margin_bottom = 141.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 2 )
+max_value = 255.0

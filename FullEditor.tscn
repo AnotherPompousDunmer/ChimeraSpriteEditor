@@ -1,0 +1,1118 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://UiScenes/FramesItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UiScenes/FramesList.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UiScenes/AnimsItem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LabelSlider.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PaletteMain.tscn" type="PackedScene" id=5]
+[ext_resource path="res://PalettePref.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Windows/ToolsPopUp.cs" type="Script" id=7]
+[ext_resource path="res://Windows/ImageCont.cs" type="Script" id=8]
+[ext_resource path="res://OnionSkinShader.tres" type="Material" id=9]
+[ext_resource path="res://Checker.png" type="Texture" id=10]
+[ext_resource path="res://LightsControl.cs" type="Script" id=11]
+[ext_resource path="res://OverlayShader.gdshader" type="Shader" id=12]
+[ext_resource path="res://Palette.cs" type="Script" id=13]
+[ext_resource path="res://SmallScripts/PaletteControls.cs" type="Script" id=14]
+[ext_resource path="res://SmallScripts/PaletteSaveLoad.cs" type="Script" id=15]
+[ext_resource path="res://NormalTex.tscn" type="PackedScene" id=16]
+[ext_resource path="res://SmallScripts/AddAnimButton.cs" type="Script" id=17]
+[ext_resource path="res://AnimHandler.cs" type="Script" id=18]
+[ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=19]
+[ext_resource path="res://SmallScripts/Overlay.gd" type="Script" id=20]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 12 )
+shader_param/pixelRatio = 1
+shader_param/marchingAnts = false
+shader_param/width = 0.03
+shader_param/antWidth = 0.12
+shader_param/antLength = 0.24
+shader_param/antSpeed = 0.05
+shader_param/antColor = Plane( 0, 0, 0, 1 )
+shader_param/gridOn = false
+shader_param/gridSize = Vector2( 8, 8 )
+shader_param/gridColor = Plane( 0, 0, 0, 1 )
+shader_param/gridWidth = 0.065
+shader_param/gridDashLength = 0.2
+shader_param/time = 0.0
+
+[node name="Cont" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DropDowns" type="PanelContainer" parent="."]
+margin_right = 1900.0
+margin_bottom = 32.0
+mouse_filter = 1
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource( 19 )
+
+[node name="List" type="HBoxContainer" parent="DropDowns"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1896.0
+margin_bottom = 28.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="File" type="MenuButton" parent="DropDowns/List"]
+margin_right = 40.0
+margin_bottom = 24.0
+focus_mode = 2
+mouse_filter = 1
+size_flags_vertical = 13
+theme = ExtResource( 19 )
+text = "File"
+items = [ "Save", null, 0, false, false, 0, 0, null, "", false, "Save as...", null, 0, false, false, 1, 0, null, "", false, "Load...", null, 0, false, false, 2, 0, null, "", false, "New Project...", null, 0, false, false, 3, 0, null, "", false, "Export...", null, 0, false, false, 4, 0, null, "", false, "", null, 0, false, true, -1, 0, null, "", true, "Import Image...", null, 0, false, false, 5, 0, null, "", false ]
+switch_on_hover = true
+
+[node name="Canvas" type="MenuButton" parent="DropDowns/List"]
+margin_left = 44.0
+margin_right = 100.0
+margin_bottom = 24.0
+theme = ExtResource( 19 )
+text = "Canvas"
+items = [ "Canvas Size...", null, 0, false, false, 0, 0, null, "", false ]
+switch_on_hover = true
+
+[node name="Tools" type="MenuButton" parent="DropDowns/List"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 24.0
+focus_mode = 2
+theme = ExtResource( 19 )
+text = "Tools"
+items = [ "Onion Skin Before", null, 1, false, false, 0, 0, null, "", false, "Onion Skin After", null, 1, false, false, 1, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "Pixel Grid...", null, 0, false, false, 2, 0, null, "", false, "Generate Normals...", null, 0, false, false, 3, 0, null, "", false ]
+switch_on_hover = true
+
+[node name="Info" type="PanelContainer" parent="."]
+margin_top = 36.0
+margin_right = 1900.0
+margin_bottom = 73.0
+mouse_filter = 1
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.9
+theme = ExtResource( 19 )
+
+[node name="Main" type="HBoxContainer" parent="."]
+margin_top = 77.0
+margin_right = 1900.0
+margin_bottom = 900.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="Main"]
+margin_right = 255.0
+margin_bottom = 823.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panels" type="VBoxContainer" parent="Main/Panel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 251.0
+margin_bottom = 819.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tools" type="Panel" parent="Main/Panel/Panels"]
+margin_right = 247.0
+margin_bottom = 179.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+script = ExtResource( 7 )
+
+[node name="ButtonList" type="GridContainer" parent="Main/Panel/Panels/Tools"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+columns = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="Main/Panel/Panels"]
+margin_top = 183.0
+margin_right = 247.0
+margin_bottom = 541.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource( 19 )
+tab_align = 0
+use_hidden_tabs_for_min_size = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Palette" type="VBoxContainer" parent="Main/Panel/Panels/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 29.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette"]
+margin_right = 239.0
+margin_bottom = 146.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+script = ExtResource( 13 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer"]
+margin_right = 78.0
+margin_bottom = 146.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="P1" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/VBoxContainer2" instance=ExtResource( 5 )]
+margin_right = 78.0
+margin_bottom = 71.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="P2" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/VBoxContainer2" instance=ExtResource( 5 )]
+margin_top = 75.0
+margin_right = 78.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="Controls" type="VBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer"]
+margin_left = 82.0
+margin_right = 239.0
+margin_bottom = 146.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource( 19 )
+script = ExtResource( 14 )
+
+[node name="RH" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/Controls" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 157.0
+margin_bottom = 26.0
+
+[node name="GS" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/Controls" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 30.0
+margin_right = 157.0
+margin_bottom = 57.0
+
+[node name="BV" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/Controls" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 61.0
+margin_right = 157.0
+margin_bottom = 87.0
+
+[node name="A" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/Controls" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 91.0
+margin_right = 157.0
+margin_bottom = 118.0
+
+[node name="Mode" type="OptionButton" parent="Main/Panel/Panels/TabContainer/Palette/HBoxContainer/Controls"]
+margin_top = 122.0
+margin_right = 157.0
+margin_bottom = 146.0
+theme = ExtResource( 19 )
+text = "RGB"
+items = [ "RGB", null, false, 0, null, "HSV", null, false, 1, null, "Vector", null, false, 2, null ]
+selected = 0
+
+[node name="PaletteSaveLoad" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette"]
+margin_top = 150.0
+margin_right = 239.0
+margin_bottom = 174.0
+theme = ExtResource( 19 )
+script = ExtResource( 15 )
+
+[node name="Palettes" type="OptionButton" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad"]
+margin_right = 171.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "Choose a Palette..."
+items = [ "Choose a Palette...", null, true, 0, null ]
+selected = 0
+
+[node name="SaveButton" type="Button" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad"]
+margin_left = 175.0
+margin_right = 239.0
+margin_bottom = 24.0
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "Save..."
+
+[node name="SaveDialog" type="WindowDialog" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton"]
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.3
+anchor_bottom = 0.5
+margin_right = 164.0
+margin_bottom = 131.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox"]
+margin_top = 8.0
+margin_right = 169.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 19 )
+text = "Name:"
+align = 1
+valign = 1
+
+[node name="NameField" type="LineEdit" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox"]
+margin_top = 37.0
+margin_right = 169.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 19 )
+max_length = 25
+
+[node name="ErrorLabel" type="Label" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox"]
+margin_top = 76.0
+margin_right = 169.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 19 )
+align = 1
+valign = 1
+
+[node name="HBox" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox"]
+margin_top = 107.0
+margin_right = 169.0
+margin_bottom = 127.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 19 )
+
+[node name="OK" type="Button" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox/HBox"]
+margin_left = 25.0
+margin_right = 56.0
+margin_bottom = 20.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 19 )
+text = "OK"
+
+[node name="Cancel" type="Button" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox/HBox"]
+margin_left = 100.0
+margin_right = 154.0
+margin_bottom = 20.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource( 19 )
+text = "Cancel"
+
+[node name="GridContainer" type="GridContainer" parent="Main/Panel/Panels/TabContainer/Palette"]
+margin_top = 178.0
+margin_right = 239.0
+margin_bottom = 325.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+columns = 8
+
+[node name="ColorRect" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 26.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect2" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_right = 56.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect3" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_right = 86.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect4" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_right = 116.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect5" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_right = 146.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect6" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 150.0
+margin_right = 176.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect7" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_right = 206.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect8" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_right = 236.0
+margin_bottom = 26.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect9" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 30.0
+margin_right = 26.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect10" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 56.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect11" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_top = 30.0
+margin_right = 86.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect12" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 30.0
+margin_right = 116.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect13" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_top = 30.0
+margin_right = 146.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect14" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 150.0
+margin_top = 30.0
+margin_right = 176.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect15" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 30.0
+margin_right = 206.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect16" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 30.0
+margin_right = 236.0
+margin_bottom = 56.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect17" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 26.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect18" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_top = 60.0
+margin_right = 56.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect19" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 86.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect20" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 60.0
+margin_right = 116.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect21" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_top = 60.0
+margin_right = 146.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect22" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 150.0
+margin_top = 60.0
+margin_right = 176.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect23" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 60.0
+margin_right = 206.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect24" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 60.0
+margin_right = 236.0
+margin_bottom = 86.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect25" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 90.0
+margin_right = 26.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect26" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_top = 90.0
+margin_right = 56.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect27" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_top = 90.0
+margin_right = 86.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect28" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 90.0
+margin_right = 116.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect29" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_top = 90.0
+margin_right = 146.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect30" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 150.0
+margin_top = 90.0
+margin_right = 176.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect31" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 90.0
+margin_right = 206.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect32" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 90.0
+margin_right = 236.0
+margin_bottom = 116.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect33" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 120.0
+margin_right = 26.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect34" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_top = 120.0
+margin_right = 56.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect35" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_top = 120.0
+margin_right = 86.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect36" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 120.0
+margin_right = 116.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect37" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_top = 120.0
+margin_right = 146.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect38" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 150.0
+margin_top = 120.0
+margin_right = 176.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect39" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 180.0
+margin_top = 120.0
+margin_right = 206.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="ColorRect40" parent="Main/Panel/Panels/TabContainer/Palette/GridContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 120.0
+margin_right = 236.0
+margin_bottom = 146.0
+mouse_filter = 1
+theme = ExtResource( 19 )
+
+[node name="Lights" type="VBoxContainer" parent="Main/Panel/Panels/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 29.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+script = ExtResource( 11 )
+
+[node name="VBox" type="VBoxContainer" parent="Main/Panel/Panels/TabContainer/Lights"]
+margin_right = 239.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="R" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Lights/VBox"]
+margin_right = 239.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="Label" type="Label" parent="Main/Panel/Panels/TabContainer/Lights/VBox/R"]
+margin_right = 47.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "R"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="Main/Panel/Panels/TabContainer/Lights/VBox/R"]
+margin_left = 51.0
+margin_right = 239.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 19 )
+max_value = 255.0
+value = 255.0
+
+[node name="G" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Lights/VBox"]
+margin_top = 23.0
+margin_right = 239.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="Label" type="Label" parent="Main/Panel/Panels/TabContainer/Lights/VBox/G"]
+margin_right = 47.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "G"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="Main/Panel/Panels/TabContainer/Lights/VBox/G"]
+margin_left = 51.0
+margin_right = 239.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 19 )
+max_value = 255.0
+value = 255.0
+
+[node name="B" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Lights/VBox"]
+margin_top = 47.0
+margin_right = 239.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="Label" type="Label" parent="Main/Panel/Panels/TabContainer/Lights/VBox/B"]
+margin_right = 47.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "B"
+align = 1
+valign = 1
+
+[node name="Slider" type="HSlider" parent="Main/Panel/Panels/TabContainer/Lights/VBox/B"]
+margin_left = 51.0
+margin_right = 239.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme = ExtResource( 19 )
+max_value = 255.0
+value = 255.0
+
+[node name="List" type="TabContainer" parent="Main/Panel/Panels/TabContainer/Lights"]
+margin_top = 71.0
+margin_right = 239.0
+margin_bottom = 275.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme = ExtResource( 19 )
+tab_align = 0
+
+[node name="AddLight" type="Button" parent="Main/Panel/Panels/TabContainer/Lights"]
+margin_top = 279.0
+margin_right = 239.0
+margin_bottom = 303.0
+theme = ExtResource( 19 )
+text = "+"
+
+[node name="DeleteLight" type="Button" parent="Main/Panel/Panels/TabContainer/Lights"]
+margin_top = 307.0
+margin_right = 239.0
+margin_bottom = 331.0
+theme = ExtResource( 19 )
+text = "X"
+
+[node name="Layers" type="Panel" parent="Main/Panel/Panels"]
+margin_top = 545.0
+margin_right = 247.0
+margin_bottom = 815.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource( 19 )
+
+[node name="ImageContainer" type="Control" parent="Main"]
+margin_left = 259.0
+margin_right = 1662.0
+margin_bottom = 823.0
+rect_clip_content = true
+focus_mode = 1
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme = ExtResource( 19 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnderLay" type="TextureRect" parent="Main/ImageContainer"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 19 )
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="TextureRect" parent="Main/ImageContainer/UnderLay"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -460, 266 )
+mouse_filter = 2
+theme = ExtResource( 19 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarchingAntsTimer" type="Timer" parent="Main/ImageContainer/UnderLay/Overlay"]
+wait_time = 0.4
+autostart = true
+
+[node name="OnionSkinBefore" type="TextureRect" parent="Main/ImageContainer/UnderLay/Overlay"]
+visible = false
+material = ExtResource( 9 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -460, 266 )
+mouse_filter = 2
+theme = ExtResource( 19 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnionSkinAfter" type="TextureRect" parent="Main/ImageContainer/UnderLay/Overlay"]
+visible = false
+material = ExtResource( 9 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -460, 266 )
+mouse_filter = 2
+theme = ExtResource( 19 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" parent="Main/ImageContainer/UnderLay/Overlay" instance=ExtResource( 16 )]
+theme = ExtResource( 19 )
+
+[node name="Anim" type="VBoxContainer" parent="Main"]
+margin_left = 1666.0
+margin_right = 1900.0
+margin_bottom = 823.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+script = ExtResource( 18 )
+AnimsItem = ExtResource( 3 )
+FramesList = ExtResource( 2 )
+FramesItem = ExtResource( 1 )
+
+[node name="Anims" type="PanelContainer" parent="Main/Anim"]
+margin_right = 234.0
+margin_bottom = 585.0
+rect_pivot_offset = Vector2( -2316, 368 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+theme = ExtResource( 19 )
+
+[node name="VBox" type="VBoxContainer" parent="Main/Anim/Anims"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 230.0
+margin_bottom = 581.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="HBox" type="HBoxContainer" parent="Main/Anim/Anims/VBox"]
+margin_right = 226.0
+margin_bottom = 549.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LSpacer" type="Control" parent="Main/Anim/Anims/VBox/HBox"]
+margin_right = 2.0
+margin_bottom = 549.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="AnimsListScroll" type="ScrollContainer" parent="Main/Anim/Anims/VBox/HBox"]
+margin_left = 6.0
+margin_right = 219.0
+margin_bottom = 549.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+scroll_horizontal_enabled = false
+
+[node name="AnimsList" type="VBoxContainer" parent="Main/Anim/Anims/VBox/HBox/AnimsListScroll"]
+margin_right = 213.0
+margin_bottom = 549.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="RSpacer" type="Control" parent="Main/Anim/Anims/VBox/HBox"]
+margin_left = 223.0
+margin_right = 226.0
+margin_bottom = 549.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="Add" type="Button" parent="Main/Anim/Anims/VBox"]
+margin_top = 553.0
+margin_right = 226.0
+margin_bottom = 577.0
+theme = ExtResource( 19 )
+text = "+ Add Anim"
+script = ExtResource( 17 )
+
+[node name="NameInput" type="Panel" parent="Main/Anim/Anims/VBox/Add"]
+visible = false
+anchor_right = 1.0
+margin_top = -63.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Main/Anim/Anims/VBox/Add/NameInput"]
+anchor_left = 0.03
+anchor_top = 0.1
+anchor_right = 0.97
+anchor_bottom = 0.9
+margin_left = -5.8651e-05
+margin_top = -1.23978e-05
+margin_right = -6.10352e-05
+margin_bottom = -1.14441e-05
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Main/Anim/Anims/VBox/Add/NameInput/VBox"]
+margin_right = 209.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+placeholder_text = "Name..."
+
+[node name="HBox" type="HBoxContainer" parent="Main/Anim/Anims/VBox/Add/NameInput/VBox"]
+margin_top = 28.0
+margin_right = 209.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[node name="Accept" type="Button" parent="Main/Anim/Anims/VBox/Add/NameInput/VBox/HBox"]
+margin_right = 102.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "OK"
+
+[node name="Cancel" type="Button" parent="Main/Anim/Anims/VBox/Add/NameInput/VBox/HBox"]
+margin_left = 106.0
+margin_right = 209.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frames" type="PanelContainer" parent="Main/Anim"]
+margin_top = 589.0
+margin_right = 234.0
+margin_bottom = 823.0
+rect_pivot_offset = Vector2( -1323, 408 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 19 )
+
+[connection signal="resized" from="Main/ImageContainer" to="Main/ImageContainer" method="Zoom" binds= [ 0, false ]]
