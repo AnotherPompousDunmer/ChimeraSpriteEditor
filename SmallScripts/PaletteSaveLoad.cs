@@ -5,18 +5,28 @@ using System.Collections.Generic;
 public class PaletteSaveLoad : HBoxContainer
 {
 
+    const string direc = "user://Palettes";
+
     public override void _Ready()
     {
         GetNode<OptionButton>("Palettes").Connect("item_selected", this, nameof(LoadPalette));
         GetNode<Button>("SaveButton").Connect("pressed", this, nameof(OpenSaveDialog));
         GetNode<Button>("SaveButton/SaveDialog/VBox/HBox/OK").Connect("pressed", this, nameof(ProcessSaveDialogContents));
         GetNode<Button>("SaveButton/SaveDialog/VBox/HBox/Cancel").Connect("pressed", this, nameof(CloseSaveDialog));
+
+        Directory paletteDir = new Directory();
+        if (!paletteDir.DirExists(direc))
+		{
+            paletteDir.MakeDir(direc);
+		}
+        GD.Print(paletteDir.Open(direc));
+
         UpdateFromFolder();
     }
 
     public void LoadPalette(int id)
 	{
-        string path = "res://Palettes/" + GetNode<OptionButton>("Palettes").GetItemText(id) + ".png";
+        string path = direc + "/" + GetNode<OptionButton>("Palettes").GetItemText(id) + ".png";
         File save = new File();
         save.Open(path, File.ModeFlags.Read);
 
@@ -55,7 +65,7 @@ public class PaletteSaveLoad : HBoxContainer
             return;
         }
 
-        string path = "res://Palettes/" + field + ".png";
+        string path = direc + "/" + field + ".png";
         if (save.FileExists(path))
 		{
             GetNode<Label>("SaveButton/SaveDialog/VBox/ErrorLabel").Text = "File already exists, please try again";
@@ -96,21 +106,22 @@ public class PaletteSaveLoad : HBoxContainer
 
         List<string> paletteNames = new List<string>();
 
-        paletteDir.ChangeDir("res://Palettes");
+        //GD.Print((OS.GetExecutablePath().GetBaseDir() + "/Palettes").Replace("/", "\\"));
+        //GD.Print(paletteDir.ChangeDir((OS.GetExecutablePath().GetBaseDir()+"/Palettes").Replace("/", "\\")).ToString());
+        GD.Print(paletteDir.Open(direc));
         paletteDir.ListDirBegin();
 
         string name = paletteDir.GetNext();
         while (name != string.Empty)
 		{
             if (name.Extension() == "png") paletteNames.Add(name.Substring(0, name.Length-4));
+            GD.Print(name);
             name = paletteDir.GetNext();
         }
 
-        int i = 0;
-        while (listButton.GetItemCount() > 1)
+        while (1 < listButton.GetItemCount())
 		{
-            listButton.RemoveItem(i);
-            i++;
+            listButton.RemoveItem(1);
 		}
 
         for (int n = 0; n < paletteNames.Count; n++)
