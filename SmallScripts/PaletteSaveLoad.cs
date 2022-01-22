@@ -7,6 +7,8 @@ public class PaletteSaveLoad : HBoxContainer
 
     const string direc = "user://Palettes";
 
+    string[] defaultPalettes = new string[] { "Commodore64.png"};
+
     public override void _Ready()
     {
         GetNode<OptionButton>("Palettes").Connect("item_selected", this, nameof(LoadPalette));
@@ -19,7 +21,16 @@ public class PaletteSaveLoad : HBoxContainer
 		{
             paletteDir.MakeDir(direc);
 		}
-        GD.Print(paletteDir.Open(direc));
+        paletteDir.Open(direc);
+
+
+        foreach (string file in defaultPalettes)
+		{
+            if (!paletteDir.FileExists(file.GetFile()))
+			{
+                paletteDir.Copy("res://DefaultPalettes/"+file, direc+"/"+file);
+			}
+        }
 
         UpdateFromFolder();
     }
@@ -108,14 +119,14 @@ public class PaletteSaveLoad : HBoxContainer
 
         //GD.Print((OS.GetExecutablePath().GetBaseDir() + "/Palettes").Replace("/", "\\"));
         //GD.Print(paletteDir.ChangeDir((OS.GetExecutablePath().GetBaseDir()+"/Palettes").Replace("/", "\\")).ToString());
-        GD.Print(paletteDir.Open(direc));
+        paletteDir.Open(direc);
         paletteDir.ListDirBegin();
 
         string name = paletteDir.GetNext();
         while (name != string.Empty)
 		{
             if (name.Extension() == "png") paletteNames.Add(name.Substring(0, name.Length-4));
-            GD.Print(name);
+            
             name = paletteDir.GetNext();
         }
 
