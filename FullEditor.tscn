@@ -329,6 +329,7 @@ size_flags_vertical = 6
 theme = ExtResource( 19 )
 align = 1
 valign = 1
+autowrap = true
 
 [node name="HBox" type="HBoxContainer" parent="Main/Panel/Panels/TabContainer/Palette/PaletteSaveLoad/SaveButton/SaveDialog/VBox"]
 margin_top = 107.0

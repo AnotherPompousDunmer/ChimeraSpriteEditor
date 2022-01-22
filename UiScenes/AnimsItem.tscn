@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Themes/Classic311/Classic311.tres" type="Theme" id=1]
+[ext_resource path="res://SmallScripts/AnimatedTextureRect.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 1 )
@@ -46,6 +47,7 @@ size_flags_vertical = 3
 theme = ExtResource( 1 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 2 )
 
 [node name="UnderLay" type="TextureRect" parent="HBox/TextureRect"]
 show_behind_parent = true
@@ -117,6 +119,7 @@ anchor_bottom = 0.99
 theme = ExtResource( 1 )
 expand = true
 stretch_mode = 6
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -72,6 +72,9 @@ public class AnimHandler : VBoxContainer
 
         New.AnimsItem = AItem;
 
+        New.itemPreview = New.AnimsItem.GetNode<TextureRect>("HBox/TextureRect");
+        New.windowPreview = New.AnimsItem.GetNode<TextureRect>("HBox/VBox/Preview/PreviewWindow/Texture");
+
         if (FrameInf == null)
 		{
             New.AddFrame();
@@ -81,6 +84,8 @@ public class AnimHandler : VBoxContainer
             New.Load(FrameInf);
 		}
 
+        New.itemPreview.Call("run");
+        New.windowPreview.Call("run");
         SetActive(New.Name);
     }
 
@@ -282,6 +287,9 @@ public class Anim : Godot.Node
     PackedScene FListItem = GD.Load<PackedScene>("res://UiScenes/FramesItem.tscn");
     AnimatedTexture Preview = new AnimatedTexture();
 
+    public TextureRect itemPreview;
+    public TextureRect windowPreview;
+
     public void Save(Dictionary<string, object> save)
 	{
         for (int i = 0; i < Frames.Count; i++)
@@ -431,29 +439,29 @@ public class Anim : Godot.Node
                 Frames.Remove(drag);
                 Frames.Insert(mousePos, drag);
                 CopyFramesListOrderToUI();
+                UpdateAnimatedTexture();
             }
 		}
 	}
 
-    public AnimatedTexture UpdateAnimatedTexture()
+    public void UpdateAnimatedTexture()
     {
-        Preview.Dispose();
-        Preview = new AnimatedTexture();
-        Preview.Fps = fps;
+        Godot.Collections.Array frames = new Godot.Collections.Array();
 
-        Preview.Frames = Frames.Count;
-
+        NormalTex norm = AnimsItem.GetNode<NormalTex>("../../../../../../../ImageContainer/UnderLay/Overlay/TextureRect");
         for (int i = 0; i < Frames.Count; i++)
 		{
             ImageTexture frame = new ImageTexture();
-            frame.CreateFromImage(Frames[i].GetPreviewImage(true, AnimsItem.GetNode<NormalTex>("../../../../../../../ImageContainer/UnderLay/Overlay/TextureRect")), 0);
-            Preview.SetFrameTexture(i, frame);
+            frame.CreateFromImage(Frames[i].GetPreviewImage(true, norm), 0);
+
+            frames.Add(frame);
         }
 
-        AnimsItem.GetNode<TextureRect>("HBox/TextureRect").Texture = Preview;
-        
-        return Preview;
-	}
+        itemPreview.Call("set_fps", fps);
+        itemPreview.Call("set_array", frames);
+        windowPreview.Call("set_fps", fps);
+        windowPreview.Call("set_array", frames);
+    }
 
     public void SetActiveFrame(Frame f) { SetActiveFrame(Frames.IndexOf(f)); }
     public void SetActiveFrame(int frame)
@@ -490,11 +498,7 @@ public class Anim : Godot.Node
 
     public void ShowPreview()
 	{
-        WindowDialog dialog = AnimsItem.GetNode<WindowDialog>("HBox/VBox/Preview/PreviewWindow");
-        TextureRect texRect = dialog.GetNode<TextureRect>("Texture");
-
-        texRect.Texture = Preview;
-        dialog.Popup_();
+        AnimsItem.GetNode<WindowDialog>("HBox/VBox/Preview/PreviewWindow").Popup_();
 	}
 
     public bool HasActiveFrame()
@@ -509,7 +513,7 @@ public class Anim : Godot.Node
     public void ProcessSettingsChange()
 	{
         fps = (int)AnimsItem.GetNode<SpinBox>("Properties/Grid/FPS").Value;
-        UpdateAnimatedTexture();
+        itemPreview.Call("set_fps", fps);
     }
     public void ShowSettings()
 	{
@@ -571,7 +575,7 @@ public class Frame : Godot.Object
 
         Preview.CreateFromImage(New, 0);
         PreviewButton.TextureNormal = Preview;
-
+        
         EmitSignal(nameof(UpdateAnimPreview));
 	}
 
