@@ -48,7 +48,7 @@ public class Palette : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("SwitchPalette"))
+		if (@event.IsActionPressed("SwitchPalette") && !Input.IsActionPressed("Cut"))
 		{
             Color S = Primary;
             SetColor(Secondary, true);
